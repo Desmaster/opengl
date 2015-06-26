@@ -1,4 +1,4 @@
-package nl.tdegroot.games.opengl.graphics;
+package nl.tdegroot.games.opengl.models;
 
 public class RawModel {
 

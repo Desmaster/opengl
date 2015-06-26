@@ -1,6 +1,5 @@
 package nl.tdegroot.games.opengl.models;
 
-import nl.tdegroot.games.opengl.graphics.RawModel;
 import nl.tdegroot.games.opengl.textures.ModelTexture;
 
 public class TexturedModel {
