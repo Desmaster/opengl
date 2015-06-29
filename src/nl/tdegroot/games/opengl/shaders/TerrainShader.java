@@ -5,10 +5,10 @@ import nl.tdegroot.games.opengl.entity.Light;
 import nl.tdegroot.games.opengl.toolbox.MathUtils;
 import org.lwjgl.util.vector.Matrix4f;
 
-public class StaticShader extends ShaderProgram {
+public class TerrainShader extends ShaderProgram {
 
-    private static final String VERTEX_FILE = "src/nl/tdegroot/games/opengl/shaders/shader.vert";
-    private static final String FRAGMENT_FILE = "src/nl/tdegroot/games/opengl/shaders/shader.frag";
+    private static final String VERTEX_FILE = "src/nl/tdegroot/games/opengl/shaders/terrain.vert";
+    private static final String FRAGMENT_FILE = "src/nl/tdegroot/games/opengl/shaders/terrain.frag";
 
     private int transformationMatrixLocation;
     private int projectionMatrixLocation;
@@ -18,7 +18,7 @@ public class StaticShader extends ShaderProgram {
     private int shineDamperLocation;
     private int reflectivityLocation;
 
-    public StaticShader() {
+    public TerrainShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
 
@@ -60,5 +60,4 @@ public class StaticShader extends ShaderProgram {
     public void loadProjectionMatrix(Matrix4f matrix) {
         super.loadMatrix(projectionMatrixLocation, matrix);
     }
-
 }
