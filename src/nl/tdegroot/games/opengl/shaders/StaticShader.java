@@ -4,6 +4,7 @@ import nl.tdegroot.games.opengl.entity.Camera;
 import nl.tdegroot.games.opengl.entity.Light;
 import nl.tdegroot.games.opengl.toolbox.MathUtils;
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
 
 public class StaticShader extends ShaderProgram {
 
@@ -17,6 +18,8 @@ public class StaticShader extends ShaderProgram {
     private int lightColourLocation;
     private int shineDamperLocation;
     private int reflectivityLocation;
+    private int fakeLightingLocation;
+    private int skyColourLocation;
 
     public StaticShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
@@ -36,6 +39,16 @@ public class StaticShader extends ShaderProgram {
         lightColourLocation = super.getUniformLocation("lightColour");
         shineDamperLocation = super.getUniformLocation("shineDamper");
         reflectivityLocation = super.getUniformLocation("reflectivity");
+        fakeLightingLocation = super.getUniformLocation("useFakeLighting");
+        skyColourLocation = super.getUniformLocation("skyColour");
+    }
+
+    public void loadSkyColour(float r, float g, float b) {
+        super.loadVector(skyColourLocation, new Vector3f(r, g, b));
+    }
+
+    public void loadFakeLightingVariable(boolean useFakeLighting) {
+        super.loadBoolean(fakeLightingLocation, useFakeLighting);
     }
 
     public void loadShineVariables(float damper, float reflectivity) {

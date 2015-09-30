@@ -1,6 +1,5 @@
 package nl.tdegroot.games.opengl.graphics;
 
-import nl.tdegroot.games.opengl.DisplayManager;
 import nl.tdegroot.games.opengl.entity.Entity;
 import nl.tdegroot.games.opengl.models.RawModel;
 import nl.tdegroot.games.opengl.models.TexturedModel;
@@ -11,7 +10,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
-import org.lwjgl.util.vector.Matrix;
 import org.lwjgl.util.vector.Matrix4f;
 
 import java.util.List;
@@ -50,6 +48,10 @@ public class EntityRenderer {
         GL20.glEnableVertexAttribArray(1);
         GL20.glEnableVertexAttribArray(2);
 
+        if (texture.isHasTransparency()) {
+            MasterRenderer.disableCulling();
+        }
+        shader.loadFakeLightingVariable(texture.isUseFakeLighting());
         shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
@@ -58,6 +60,7 @@ public class EntityRenderer {
     }
 
     private void unbindTexturedModel() {
+        MasterRenderer.disableCulling();
         GL20.glDisableVertexAttribArray(0);
         GL20.glDisableVertexAttribArray(1);
         GL20.glDisableVertexAttribArray(2);

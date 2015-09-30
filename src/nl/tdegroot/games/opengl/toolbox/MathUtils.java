@@ -2,7 +2,6 @@ package nl.tdegroot.games.opengl.toolbox;
 
 import nl.tdegroot.games.opengl.entity.Camera;
 import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector;
 import org.lwjgl.util.vector.Vector3f;
 
 public class MathUtils {
@@ -31,7 +30,7 @@ public class MathUtils {
         Matrix4f.rotate((float) Math.toRadians(camera.getRoll()), new Vector3f(0, 0, 1), matrix, matrix);
 
         Vector3f cameraPosition = camera.getPosition();
-        Vector3f negativeCameraPosition = new Vector3f(-cameraPosition.x, -cameraPosition.y, cameraPosition.z);
+        Vector3f negativeCameraPosition = new Vector3f(-cameraPosition.x, -cameraPosition.y, -cameraPosition.z);
 
         Matrix4f.translate(negativeCameraPosition, matrix, matrix);
 

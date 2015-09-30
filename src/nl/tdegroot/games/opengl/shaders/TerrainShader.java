@@ -4,6 +4,7 @@ import nl.tdegroot.games.opengl.entity.Camera;
 import nl.tdegroot.games.opengl.entity.Light;
 import nl.tdegroot.games.opengl.toolbox.MathUtils;
 import org.lwjgl.util.vector.Matrix4f;
+import org.lwjgl.util.vector.Vector3f;
 
 public class TerrainShader extends ShaderProgram {
 
@@ -17,6 +18,14 @@ public class TerrainShader extends ShaderProgram {
     private int lightColourLocation;
     private int shineDamperLocation;
     private int reflectivityLocation;
+    private int skyColourLocation;
+
+    private int backgroundTextureLocation;
+    private int rTextureLocation;
+    private int gTextureLocation;
+    private int bTextureLocation;
+    private int blendMapLocation;
+
 
     public TerrainShader() {
         super(VERTEX_FILE, FRAGMENT_FILE);
@@ -36,6 +45,24 @@ public class TerrainShader extends ShaderProgram {
         lightColourLocation = super.getUniformLocation("lightColour");
         shineDamperLocation = super.getUniformLocation("shineDamper");
         reflectivityLocation = super.getUniformLocation("reflectivity");
+        skyColourLocation = super.getUniformLocation("skyColour");
+        backgroundTextureLocation = super.getUniformLocation("backgroundTexture");
+        rTextureLocation = super.getUniformLocation("rTexture");
+        gTextureLocation = super.getUniformLocation("gTexture");
+        bTextureLocation = super.getUniformLocation("bTexture");
+        blendMapLocation = super.getUniformLocation("blendMap");
+    }
+
+    public void connectTextureUnits() {
+        super.loadInt(backgroundTextureLocation, 0);
+        super.loadInt(rTextureLocation, 1);
+        super.loadInt(gTextureLocation, 2);
+        super.loadInt(bTextureLocation, 3);
+        super.loadInt(blendMapLocation, 4);
+    }
+
+    public void loadSkyColour(float r, float g, float b) {
+        super.loadVector(skyColourLocation, new Vector3f(r, g, b));
     }
 
     public void loadShineVariables(float damper, float reflectivity) {

@@ -1,6 +1,5 @@
 package nl.tdegroot.games.opengl.entity;
 
-import com.sun.javafx.geom.Vec3f;
 import nl.tdegroot.games.opengl.models.TexturedModel;
 import org.lwjgl.util.vector.Vector3f;
 
